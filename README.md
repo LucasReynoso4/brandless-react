@@ -1,6 +1,8 @@
-# Tienda Online
+# Brandless
 
-Proyecto de e-commerce desarrollado con React 19 y Vite, en el marco de la Tecnicatura Universitaria en Programación (UTN-FRA). Esta es la entrega de la estructura base del proyecto: en próximas entregas se incorporarán productos, rutas, carrito de compras, checkout y conexión con Firebase.
+Proyecto de e-commerce desarrollado con React 19 y Vite, en el marco de la Tecnicatura Universitaria en Programación (UTN-FRA). Brandless es una tienda online de productos sin marca: la idea es ofrecer artículos de buena calidad a precio justo, sin pagar de más por el packaging o el logo.
+
+Esta es la entrega de la estructura base del proyecto: en próximas entregas se incorporarán productos, rutas, carrito de compras, checkout y conexión con Firebase.
 
 ## Tecnologías utilizadas
 
@@ -11,24 +13,21 @@ Proyecto de e-commerce desarrollado con React 19 y Vite, en el marco de la Tecni
 ## Instalación y ejecución
 
 1. Clonar el repositorio
-   ```bash
-   git clone https://github.com/usuario/ecommerce-tienda.git
-   cd ecommerce-tienda
-   ```
+```bash
+   git clone https://github.com/LucasReynoso4/brandless-react.git
+   cd brandless-react
+```
 2. Instalar las dependencias
-   ```bash
+```bash
    npm install
-   ```
+```
 3. Ejecutar el proyecto en modo desarrollo
-   ```bash
+```bash
    npm run dev
-   ```
+```
 
 ## Estructura del proyecto
 
 ```
 src/
-  components/   # componentes de la aplicación (se completará en próximas entregas)
-  App.jsx
-  main.jsx
-```
+  components/   # componentes
