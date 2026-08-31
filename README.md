@@ -1,6 +1,6 @@
 # Brandless
 
-Proyecto de e-commerce desarrollado con React 19 y Vite, en el marco de la Tecnicatura Universitaria en Programación (UTN-FRA). Brandless es una tienda online de productos sin marca: la idea es ofrecer artículos de buena calidad a precio justo, sin pagar de más por el packaging o el logo.
+Proyecto de e-commerce desarrollado con React 19 y Vite). Brandless es una tienda online de productos sin marca: la idea es ofrecer artículos de buena calidad a precio justo, sin pagar de más por el packaging o el logo.
 
 Esta es la entrega de la estructura base del proyecto: en próximas entregas se incorporarán productos, rutas, carrito de compras, checkout y conexión con Firebase.
 
@@ -30,4 +30,14 @@ Esta es la entrega de la estructura base del proyecto: en próximas entregas se 
 
 ```
 src/
-  components/   # componentes
+  components/
+    Navbar.jsx
+    Navbar.css
+    CartWidget.jsx
+    ItemListContainer.jsx
+    ItemList.jsx
+    Item.jsx
+  mock/
+    asyncMock.js
+  App.jsx
+  main.jsx
