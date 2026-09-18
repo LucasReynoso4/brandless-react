@@ -4,11 +4,13 @@ import ItemList from './ItemList'
 
 function ItemListContainer({ greeting }) {
   const [items, setItems] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchProducts = async () => {
       const products = await getProducts()
       setItems(products)
+      setLoading(false)
     }
 
     fetchProducts()
@@ -17,7 +19,7 @@ function ItemListContainer({ greeting }) {
   return (
     <div className="item-list-container">
       <h1>{greeting}</h1>
-      <ItemList products={items} />
+      {loading ? <p>Cargando productos...</p> : <ItemList products={items} />}
     </div>
   )
 }
