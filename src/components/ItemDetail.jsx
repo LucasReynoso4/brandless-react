@@ -1,7 +1,13 @@
+import { useCart } from '../context/CartContext'
 import ItemCount from './ItemCount'
 
 function ItemDetail({ producto }) {
   const { name, price, category, description, stock, img } = producto
+  const { addItem } = useCart()
+
+  const handleAdd = (quantity) => {
+    addItem(producto, quantity)
+  }
 
   return (
     <div className="item-detail">
@@ -12,7 +18,7 @@ function ItemDetail({ producto }) {
         <p className="item-detail-description">{description}</p>
         <p className="item-detail-price">${price}</p>
         <p className="item-detail-stock">Stock disponible: {stock}</p>
-        <ItemCount stock={stock} />
+        <ItemCount stock={stock} onAdd={handleAdd} />
       </div>
     </div>
   )
