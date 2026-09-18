@@ -1,15 +1,18 @@
 import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import { getProductById } from '../services/getProductById'
 import ItemDetail from './ItemDetail'
 
-function ItemDetailContainer({ productId = 1 }) {
+function ItemDetailContainer() {
+  const { id } = useParams()
   const [producto, setProducto] = useState(null)
 
   useEffect(() => {
-    getProductById(productId)
+    setProducto(null)
+    getProductById(Number(id))
       .then((p) => setProducto(p))
       .catch((e) => console.error(e))
-  }, [productId])
+  }, [id])
 
   if (!producto) return <p>Cargando...</p>
 
