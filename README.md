@@ -13,7 +13,7 @@ Proyecto de e-commerce de indumentaria desarrollado con React 19 y Vite, en el m
 ```bash
 git clone https://github.com/LucasReynoso4/brandless-react.git
 cd brandless-react
-npm install
+npm installn
 npm run dev
 ```
 
