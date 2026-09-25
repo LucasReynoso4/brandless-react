@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import CartWidget from './CartWidget'
+import { useAuth } from '../context/AuthContext'
 import './Navbar.css'
 
 const categories = [
@@ -10,6 +11,8 @@ const categories = [
 ]
 
 function Navbar() {
+  const { currentUser, logout } = useAuth()
+
   return (
     <nav className="navbar">
       <NavLink to="/" className="navbar-brand">Brandless</NavLink>
@@ -25,7 +28,17 @@ function Navbar() {
           </li>
         ))}
       </ul>
-      <CartWidget />
+      <div className="navbar-auth">
+        {currentUser ? (
+          <>
+            <span className="navbar-user">{currentUser.email}</span>
+            <button onClick={logout} className="logout-btn">Cerrar sesión</button>
+          </>
+        ) : (
+          <NavLink to="/login">Ingresar</NavLink>
+        )}
+        <CartWidget />
+      </div>
     </nav>
   )
 }

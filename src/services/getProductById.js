@@ -1,10 +1,13 @@
-import { products } from '../mock/asyncMock'
+import { db } from '../firebase/config'
+import { doc, getDoc } from 'firebase/firestore'
 
-export function getProductById(productId) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      const producto = products.find((p) => p.id === productId)
-      producto ? resolve(producto) : reject(new Error('Producto no encontrado'))
-    }, 500)
-  })
+export const getProductById = async (productId) => {
+  const productRef = doc(db, 'products', productId)
+  const snapshot = await getDoc(productRef)
+
+  if (!snapshot.exists()) {
+    throw new Error('Producto no encontrado')
+  }
+
+  return { id: snapshot.id, ...snapshot.data() }
 }
