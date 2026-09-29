@@ -78,7 +78,7 @@ function Checkout() {
       setOrderId(docRef.id)
       clear()
     } catch (err) {
-      setOrderError('No se pudo generar la orden. Intentá de nuevo.')
+      setOrderError(err.message || 'No se pudo generar la orden. Intentá de nuevo.')
     } finally {
       setLoading(false)
     }

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { getProducts } from '../services/getProducts'
 import ItemList from './ItemList'
+import Loader from './Loader'
 
 function ItemListContainer({ greeting }) {
   const { categoryId } = useParams()
@@ -22,7 +23,7 @@ function ItemListContainer({ greeting }) {
   return (
     <div className="item-list-container">
       <h1>{greeting || `Categoría: ${categoryId}`}</h1>
-      {loading && <p>Cargando productos...</p>}
+      {loading && <Loader text="Cargando productos..." />}
       {error && <p className="error-message">{error}</p>}
       {!loading && !error && <ItemList products={items} />}
     </div>
