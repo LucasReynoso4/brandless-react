@@ -1,5 +1,5 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Poppins', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   --color-bg: #fafafa;
   --color-text: #1a1a1a;
@@ -485,4 +485,44 @@ body {
   .checkout {
     padding: 0 1rem;
   }
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.low-stock-badge {
+  display: inline-block;
+  background-color: #c0392b;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.low-stock-text {
+  color: #c0392b;
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: var(--color-text);
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: block;
+  max-width: 720px;
+  margin: 1rem auto 0;
+  padding: 0 1rem;
+  text-align: left;
+}
+
+.back-btn:hover {
+  text-decoration: underline;
 }

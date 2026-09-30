@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
+import { formatPrice } from '../utils/formatPrice'
 
 function Cart() {
   const { cart, removeItem, clear } = useCart()
@@ -23,13 +24,13 @@ function Cart() {
           <li key={item.id} className="cart-item">
             <span className="cart-item-name">{item.name}</span>
             <span>Cantidad: {item.quantity}</span>
-            <span>Precio unitario: ${item.price}</span>
-            <span>Subtotal: ${item.price * item.quantity}</span>
+            <span>Precio unitario: {formatPrice(item.price)}</span>
+            <span>Subtotal: {formatPrice(item.price * item.quantity)}</span>
             <button onClick={() => removeItem(item.id)}>Eliminar</button>
           </li>
         ))}
       </ul>
-      <p className="cart-total">Total: ${total}</p>
+      <p className="cart-total">Total: {formatPrice(total)}</p>
       <div className="cart-actions">
         <button onClick={clear}>Vaciar carrito</button>
         <Link to="/checkout" className="checkout-btn">Finalizar compra</Link>
