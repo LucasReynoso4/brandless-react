@@ -383,3 +383,44 @@ body {
   padding: 2rem 1rem;
   color: #666;
 }
+
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-main {
+  flex: 1;
+}
+
+.footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  background-color: var(--color-accent);
+  color: #ccc;
+  font-size: 0.85rem;
+}
+
+.footer-tagline {
+  margin-top: 0.25rem;
+  color: #888;
+}
+
+.item-card {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.item-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.item-card-img,
+.item-detail-img {
+  background-color: #eee;
+}
+
+.item-list-container h1 {
+  margin-bottom: 2rem;
+}

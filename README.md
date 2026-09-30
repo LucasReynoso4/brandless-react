@@ -1,16 +1,19 @@
 # Brandless
 
-Proyecto de e-commerce de indumentaria desarrollado con React 19, Vite y Firebase, en el marco de la Tecnicatura Universitaria en Programación (UTN-FRA).
+E-commerce de indumentaria hecho con React, Vite y Firebase. Proyecto final del curso de React de Coderhouse (UTN-FRA).
 
-## Tecnologías utilizadas
+Demo: https://brandless-react.vercel.app/
+
+## Tecnologías
 
 - React 19
 - Vite
 - React Router DOM
 - Context API
 - Firebase (Firestore + Authentication)
+- Vercel
 
-## Instalación y ejecución
+## Cómo correrlo local
 
 ```bash
 git clone https://github.com/LucasReynoso4/brandless-react.git
@@ -18,13 +21,13 @@ cd brandless-react
 npm install
 ```
 
-Creá un archivo `.env` en la raíz (mirá `.env.example` para los nombres de las variables) con tus propias credenciales de Firebase, y después:
+Necesitás un archivo `.env` en la raíz con tus propias credenciales de Firebase (los nombres de las variables están en `.env.example`). Después:
 
 ```bash
 npm run dev
 ```
 
-## Variables de entorno
+Variables necesarias:
 
 VITE_FIREBASE_API_KEY
 VITE_FIREBASE_AUTH_DOMAIN
@@ -34,21 +37,35 @@ VITE_FIREBASE_MESSAGING_SENDER_ID
 VITE_FIREBASE_APP_ID
 
 
-## Colecciones de Firestore
+## Rutas
 
-**`products`** — catálogo de productos.
+- `/` catálogo completo
+- `/category/:categoryId` catálogo filtrado por categoría
+- `/item/:id` detalle de producto
+- `/cart` carrito
+- `/login` y `/register` autenticación
+- `/checkout` requiere estar logueado
+- cualquier otra ruta muestra un 404
+
+## Qué tiene
+
+Los productos se traen de Firestore (con filtro por categoría desde el servidor). El carrito vive en un Context y se mantiene mientras navegás o te logueás. El registro/login usa Firebase Auth y la sesión persiste al recargar. El checkout solo se muestra si hay un usuario logueado; si no, te manda a login. Al confirmar la compra se genera una orden en Firestore y se muestra el ID como confirmación, y recién ahí se vacía el carrito. Hay loaders mientras carga todo y mensajes de error si algo falla.
+
+## Estructura de un producto (Firestore, colección `products`)
+
 ```json
 {
   "name": "Remera Oversize",
   "description": "Remera oversize de algodón 100%, corte relajado.",
   "price": 15000,
-  "img": "https://placehold.co/300x300?text=Remera+Oversize",
+  "img": "https://picsum.photos/seed/remera1/400/400",
   "category": "Remeras",
   "stock": 20
 }
 ```
 
-**`orders`** — órdenes de compra generadas en el checkout.
+## Estructura de una orden (colección `orders`)
+
 ```json
 {
   "userId": "uid-del-usuario",
@@ -68,16 +85,6 @@ VITE_FIREBASE_APP_ID
 }
 ```
 
-## Componentes principales
-
-- **Navbar**: categorías, `CartWidget`, y muestra el email del usuario logueado (o link a "Ingresar").
-- **ItemListContainer / ItemDetailContainer**: obtienen productos desde Firestore (`getProducts`, `getProductById`), con estados de carga y error.
-- **CartContext**: estado global del carrito.
-- **AuthContext**: estado global de autenticación (registro, login, logout, `onAuthStateChanged`).
-- **Login / Register**: formularios de autenticación con manejo de errores.
-- **ProtectedRoute**: redirige a `/login` si el usuario no está autenticado.
-- **Checkout**: formulario de datos de entrega, valida campos obligatorios, genera la orden en Firestore (`addDoc` + `serverTimestamp`), muestra el ID de confirmación y vacía el carrito.
-
 ## Seguridad
 
-Las reglas de Firestore permiten lectura pública de `products`, pero solo usuarios autenticados pueden crear documentos en `orders`. Nadie puede editar productos ni leer/modificar órdenes ajenas desde el cliente.
+Las reglas de Firestore están en `firestore.rules`. Cualquiera puede leer los productos pero nadie puede escribirlos desde el cliente. Las órdenes solo se pueden crear si hay un usuario logueado, y no se pueden leer, editar ni borrar desde afuera.
